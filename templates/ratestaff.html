@@ -1,0 +1,73 @@
+{% extends 'base.html' %} {% block body %}
+<form action="{{ url_for('rate_staff', staff_name=staff_name, staff_resno=staff_resno, staff_rating=staff_rating) }}" method="POST">
+    {{ form.hidden_tag() }}
+    <div style="max-width:400px;margin:0 auto;">
+        <div style="padding:5px 10px;">Name: {{ staff_name }}</div>
+        <div style="padding:5px 10px;">Resno: {{ staff_resno }}</div>
+        <div style="padding:5px 10px;">
+            <div style="margin-bottom:10px;">{{ form.staff_rating.label }}: <span style="font-size:0.85em;">(<a style="text-decoration:none;"
+                                                                                                                href="https://sites.google.com/irri.org/myhr/performance-management"
+                                                                                                                target="_blank">View rating descriptors in MyHR</a>)</span></div>
+            <div>{{ form.staff_rating(class="form-select") }}</div>
+            <button type="button" class="btn btn-secondary btn-lg" data-bs-toggle="modal"
+                style="margin-top:20px;float:right;"
+                onclick="history.back()">
+                Cancel
+            </button>
+            <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
+                style="margin-top:20px;margin-right:10px;float:right;"
+                onclick="populateModal()">
+                Submit
+            </button>
+        </div>
+    </div>
+    <!-- Modal confirmation -->
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog" style="width:350px;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <span id="modal-title" style="font-size:1.2em;">Confirm staff rating</span>
+                    <button id="modal-close-button" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div style="margin:15px;">
+                    <div id="modal-body">
+                        <div style="margin-bottom:15px;">Proceed with your staff rating?</div>
+                        <div id="modal_name">{{ staff_name }}</div>
+                        <div style="margin-bottom:15px;" id="modal_resno">{{ staff_resno }}</div>
+                        <div>Rating:</div>
+                        <div id="modal_rating" style="font-weight:700;margin-bottom:20px;"></div>
+                    </div>
+                    <div style="font-size:.8em;">
+                        By submitting this rating, you confirm that you've completed the performance review discussion and documentation in myPAD with your staff.
+                    </div>
+                    <div class="modal-footer" id="modal-footer" style="padding-top: 20px;">
+                        <div id="modal-submit">{{ form.submit(class="btn btn-primary btn-lg",
+                            id="confirmation-modal-submit", style="width:100px;") }}</div>
+                        <button id="modal-cancel" type="button" class="btn btn-secondary btn-lg"
+                            data-bs-dismiss="modal" style="width:100px;">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% if form.errors %}
+        {{ form.errors }}
+    {% endif %}
+</form>
+<script>
+    function populateModal() {
+        var select_rating = document.getElementById("staff_rating");
+        document.querySelector('#modal_rating').innerHTML = select_rating.options[select_rating.selectedIndex].text;
+    }
+
+    // CLOSES CONFIRMATION BOX UPON CLICKING ON SUBMIT
+    document.getElementById("confirmation-modal-submit").addEventListener("click", function () {
+        document.getElementById("modal-footer").style.display = "none";
+        document.getElementById("modal-title").innerHTML = "Reloading data";
+        document.getElementById("modal-body").innerHTML = "Saving rating. Reloading supervisee data. This may take a moment.<br><br>You will be returned to the home screen when done.<br><br>Please wait.<br><br>";
+        document.getElementById("modal-close-button").style.display = "none";
+        // document.getElementById("staticBackdrop").style.display = "none";
+    });
+</script>
+{% endblock %}

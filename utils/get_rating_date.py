@@ -18,6 +18,6 @@ def getratingdate():
     mnl_date = now_asia_mnl.strftime(date_format)
     # print("mnl_date", mnl_date)  # DEBUG INFO
 
-    rating_date = mnl_date + ' 00:00:00'
+    rating_date = mnl_date + 'T00:00:00.000'
 
     return rating_date
