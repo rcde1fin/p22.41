@@ -1,0 +1,77 @@
+{
+    "dev": {
+        "app_function": "main.app",
+        "aws_region": "ap-southeast-1",
+        "profile_name": "its-test",
+        "project_name": "p22-41",
+        "runtime": "python3.9",
+        "s3_bucket": "zappa-mis-p22-41-dev",
+        "timeout_seconds": 600,
+        "manage_roles": false,
+        "role_name": "zappa1-dev-ZappaLambdaExecutionRole",
+        "role_arn": "arn:aws:iam::976526293418:role/zappa1-dev-ZappaLambdaExecutionRole",        
+        "aws_kms_key_arn": "arn:aws:kms:ap-southeast-1:976526293418:key/0d015888-330c-4922-8314-923e79673b17",
+        "apigateway_enabled": true,
+        "keep_warm": false,
+        "aws_environment_variables": {
+            "QUERY_ENGINE_URL": "https://npfk03.ocs.cgiar.org/IRRIUATMS7-WS/service.svc?QueryEngineService/QueryEngineV201101",
+            "REST_API_EMPLOYEE_URL": "https://npfk03.ocs.cgiar.org/IRRIUATMS7-API/v1/employees/",
+            "VAR_NUM": "4979",
+            "VAR_NUM_RESNO": "4981",
+            "OCS_CLIENT": "R3",
+            "APP_SECRET_KEY": "9a89c99e79a5d9d5941a596c3aaf5822",
+            "GOO_CLIENT": "839814465186-8ck2of6inno9pscmhssnj7iqenv7c00p.apps.googleusercontent.com",
+            "GOO_SHH": "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"         
+        },
+        "layers": [
+            "arn:aws:lambda:ap-southeast-1:976526293418:layer:ocs_browser:1"
+        ]
+    },
+
+    "prod": {
+        "app_function": "main.app",
+        "aws_region": "ap-southeast-1",
+        "profile_name": "its-prod",
+        "project_name": "p22-41",
+        "runtime": "python3.9",
+        "s3_bucket": "zappa-mis-p22-41-mypad-prod",
+        "timeout_seconds": 600,
+        "manage_roles": false,
+        "role_name": "p19-004-prod-ZappaLambdaExecutionRole",
+        "role_arn": "arn:aws:iam::202075337786:role/p19-004-prod-ZappaLambdaExecutionRole",
+        "aws_kms_key_arn": "arn:aws:kms:ap-southeast-1:202075337786:key/1ed7914f-6790-4a99-8392-549dea3267cd",
+        "apigateway_enabled": true,
+        "keep_warm": false,
+        "aws_environment_variables": {
+            "QUERY_ENGINE_URL": "https://irri.ocs.cgiar.org/Agressowshost/service.svc?QueryEngineService/QueryEngineV201101",
+            "REST_API_EMPLOYEE_URL": "https://irri.ocs.cgiar.org/BusinessWorld-web-api/v1/employees/",
+            "VAR_NUM": "4979",
+            "VAR_NUM_RESNO": "4981",
+            "VAR_NUM_GET_YR": "5018",
+            "OCS_CLIENT": "R3",
+            "APP_SECRET_KEY": "9a89c99e79a5d9d5941a596c3aaf5822",
+            "GOO_CLIENT": "839814465186-8ck2of6inno9pscmhssnj7iqenv7c00p.apps.googleusercontent.com",
+            "GOO_SHH": "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"
+        },
+        "layers": [
+            "arn:aws:lambda:ap-southeast-1:202075337786:layer:ocs_browser:1"
+        ]
+    },
+
+
+    "test_async": {
+        "app_function": "test1.app",
+        "aws_region": "ap-southeast-1",
+        "profile_name": "its-test",
+        "project_name": "p22-41",
+        "runtime": "python3.9",
+        "s3_bucket": "zappa-mis-p22-41-test",
+        "timeout_seconds": 600,
+        "manage_roles": false,
+        "role_name": "zappa1-dev-ZappaLambdaExecutionRole",
+        "role_arn": "arn:aws:iam::976526293418:role/zappa1-dev-ZappaLambdaExecutionRole",
+        "aws_kms_key_arn": "arn:aws:kms:ap-southeast-1:976526293418:key/0d015888-330c-4922-8314-923e79673b17",
+        "apigateway_enabled": true,
+        "keep_warm": false
+    }
+}

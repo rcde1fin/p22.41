@@ -1,0 +1,109 @@
+{% extends 'base.html' %} {% block body %}
+
+<div>
+    <div style="float:left">
+        <span style="font-size:2.5em;font-weight:300;color:#666666;">myPAD Web App Help</span>
+    </div>
+    <div>
+        <button type="button" class="btn" data-bs-toggle="modal"
+            style="margin-top:0;float:right;position:fixed;top:10px;right:20px;z-index:9999;height:30px;border-radius:200px;background-color:#fefefe;color:#333333;font-size:.8em;padding:4px 10px;"
+            onclick="history.back()">
+            Back
+        </button>
+    </div>
+    <div style="border-bottom: 1px solid #cccccc;height:1px;clear: left; padding-top:40px;height:86px;margin-bottom:40px;"></div>
+</div>
+
+    <div style="color:#666666;font-size:2em;font-weight:300;margin-bottom:20px;">What do the symbols mean?</div>
+    <div  style="color:#666666;margin-bottom:60px;">
+        <div style="margin-bottom:10px;">
+            <span class="material-icons" style="color:#198753;font-size:25px;float:left;margin-right:15px;">stars</span>
+            Exceeded expectations
+        </div>
+        <div style="margin-bottom:10px;">
+            <span class="material-icons" style="color:#198753;font-size:25px;float:left;margin-right:15px;">check_circle</span>
+            Met expectations
+        </div>
+        <div style="margin-bottom:10px;">
+            <span class="material-icons" style="color:#198753;font-size:25px;float:left;margin-right:15px;">contrast</span>
+            Partially met expectations
+        </div>
+        <div style="margin-bottom:10px;">
+            <span class="material-icons" style="color:#198753;font-size:25px;float:left;margin-right:15px;">cancel</span>
+            Did not meet expectations
+        </div>
+        <div style="margin-bottom:10px;">
+            <span class="material-icons" style="color:#198753;font-size:25px;float:left;margin-right:15px;">remove_circle_outline</span>
+            Regular staff, but with less than 6 months regular service
+        </div>
+        <div style="margin-bottom:10px;">
+            <span class="material-symbols-outlined" style="color:#198753;font-size:25px;float:left;margin-right:15px;">radio_button_unchecked</span>
+            Still under probationary service
+        </div>
+        <div style="margin-bottom:10px;">
+            <span class="material-icons" style="color:#198753;font-size:25px;float:left;margin-right:15px;">pending</span>
+            No rating
+        </div>
+        <div style="clear:both;"></div>
+    </div>
+    <div style="color:#666666;font-size:2em;font-weight:300;margin-bottom:20px;">Why are some Rate buttons grey?</div>
+    <div  style="color:#666666;margin-bottom:60px;">
+        <div style="margin-bottom:10px;">
+            A grey Rate button means it is deactivated and cannot be clicked or tapped. This happens when the staff is still under probation. This also happens to a newly regularized staff if they
+            have less than six months service as a regular staff until the year-end appraisal period.
+        </div>
+    </div>
+    <div style="color:#666666;font-size:2em;font-weight:300;margin-bottom:20px;">What is the date format of the review date?</div>
+    <div  style="color:#666666;margin-bottom:60px;">
+        <div style="margin-bottom:10px;">
+            The date format is <span style="color:#333333;font-weight:700;">YYYY-mm-dd</span>.<br><br><span style="color:#333333;font-weight:700;">YYYY</span> stands for
+            <span style="color:#333333;font-weight:700;">year</span> e.g. 1900 or 2010.<br><br>
+            <span style="color:#333333;font-weight:700;">mm</span> stands for the <span style="color:#333333;font-weight:700;">month</span> e.g. 01 for January or 10 for October.<br><br>
+            <span style="color:#333333;font-weight:700;">dd</span> stands for the <span style="color:#333333;font-weight:700;">date</span> e.g. 02 for the 2nd day of the month or 31 for the thirty-first day of the month.
+        </div>
+    </div>
+    <div style="clear:both;"></div>
+    <div style="color:#666666;font-size:2em;font-weight:300;margin-bottom:20px;">How to rate supervisees</div>
+    <div style="color:#666666;margin-bottom:60px;">
+        <div style="margin-bottom:10px;">
+            Click or tap on the &quot;Rate&quot; button on the right of the name of your supervisee.
+        </div>
+        <div style="margin:30px auto;text-align:center;">
+            <img src="{{ url_for('static', filename='hlp_1.jpg')}}" style="width:360px;height:auto;border:1px solid #cccccc;">
+        </div>
+        <div style="margin-bottom:10px;">
+            A new window will appear. Choose the rating from the drop down.
+        </div>
+        <div style="margin:30px auto;text-align:center;">
+            <img src="{{ url_for('static', filename='hlp_2.png')}}" style="width:300px;height:auto;border:1px solid #cccccc;">
+        </div>
+        <div style="margin-bottom:10px;">
+            Click or tap on the &quot;Submit&quot; button to save the rating to OCS, or click or tap the &quot;Cancel&quot; button to go back.
+        </div>
+        <div style="margin:30px auto;text-align:center;">
+            <img src="{{ url_for('static', filename='hlp_3.png')}}" style="width:300px;height:auto;border:1px solid #cccccc;">
+        </div>
+        <div style="margin-bottom:10px;">
+            Do the same for the rest of your supervisees.
+        </div>
+    </div>
+    <div style="color:#666666;font-size:2em;font-weight:300;margin-bottom:20px;margin-top:20px;">Need more assistance?</div>
+    <div style="color:#666666;margin-bottom:60px;">
+        Contact the IRRI HROD Learning and Development team <span style="font-weight:700;">development-performance@irri.org</span> or call them at <span style="font-weight:700;">x2824</span>.
+        <div style="height:20px;"></div>
+    </div>
+<div>
+    <div style="padding:40px 50px;border-radius:10px;background-color:#ece9ef;width:100%;text-align:right;">
+        <div style="color:#666666;font-size:2em;font-weight:300;margin-bottom:20px;margin-bottom:20px;">About the myPAD Web App</div>
+        <p style="font-size:.8em;">
+            myPAD Web App version 1.0<br>
+            Release Q4 2023<br>
+            A joint project of HROD and IKS-MIS<br>
+            International Rice Research Institute
+        </p>
+    </div>
+</div>
+
+
+
+{% endblock %}

@@ -1,0 +1,263 @@
+{% extends 'base.html' %} {% block body %}
+
+<style>
+    .my_pill {
+        padding:2px 10px;
+        margin: 3px;
+    }
+    .float_l {
+        float: left;
+    }
+    .user_image_div {
+        float: left;
+    }
+    .user_info_div {
+        float: left;
+        margin-left: 20px;
+        font-weight:300;
+        color:#fefefe;
+    }
+    .profile_name {
+
+    }
+    .profile_email {
+
+    }
+    .profile_image {
+        border-radius:200px;
+    }
+</style>
+
+<div>
+    <div style="border:2px solid #dcdcdc;border-radius:500px;width:100px;height:100px;float: left;margin-right: 15px;">
+        <img src={{picture}} style="border-radius:500px;">
+    </div>
+    <div style="color:#333333;float:left">
+<!--        <div style="font-size:1em;"> {{ name }} </div>-->
+<!--        <div style="font-size:1em"> {{ email }} </div>-->
+<!--        <div style="font-size:1em"> {{ resno }} </div>-->
+        <h5>
+            <div class="badge rounded-pill bg-success"> {{ name }} </div>
+        </h5>
+        <h5>
+            <div class="badge rounded-pill bg-success"> {{ email }} </div>
+        </h5>
+        <h5>
+            <div class="badge rounded-pill bg-success"> {{ resno }} </div>
+        </h5>
+<!--        <h5>-->
+<!--            <a href="{{ moderated_rating_url }}" target="_blank" type="bbutton" class="bbtn btn-primary" style="height:25px;line-height:23px;font-size:.8em;padding:0;text-decoration:none;">Moderated rating charts</a>-->
+<!--        </h5>-->
+    </div>
+<!--    <div>--
+<!--        <a style="float:right;text-decoration:none;background-color:#0275d8;color:#ffffff;border-radius:200px;padding:5px 10px;font-size:.8em;"-->
+<!--           href="{{ url_for('help_', mypadyr=session['mypadyr']) }}"-->
+<!--        >Help</a>-->
+<!--    </div>-->
+    <div style="border-bottom: 1px solid #cccccc;height:1px;clear: left; padding-top:40px;"></div>
+</div>
+
+<div style="clear: left;">
+    <table style="margin:0 auto 0;width:100%;max-width:400px;">
+        <thead>
+            <tr>
+                <th style="min-width:225px;column-width:295px;text-align:left;font-weight:300;font-size:1.5em;padding:20px 0 0;color:#666666;line-height:30px;" colspan="3">
+                    Your supervisees for
+                </th>
+            </tr>
+            <tr style="border-bottom:0px solid #dddddd;border-top:0px solid #dddddd;">
+                <th style="min-width:225px;column-width:295px;text-align:left;font-weight:300;font-size:1.5em;padding:0 0 20px;color:#666666;line-height:30px;" colspan="3">
+                    myPAD appraisal year <span style="font-family:arial;font-weight:800;color:#696969;"><b>{{mypadyr}}</b></span>
+                </th>
+            </tr>
+            <tr style="border-bottom:0px solid #dddddd;border-top:0px solid #dddddd;">
+                <th style="min-width:225px;column-width:295px;text-align:left;margin:0 0 20px;color:#666666;line-height:30px;" colspan="3">
+                    <div style="padding:10px;background-color:#efefef;border:1px dashed #cccccc;border-radius:3px;font-weight:400;font-size:.9em;">
+
+                        <a href="{{ moderated_rating_url + session['mypadyr'] }}" target="_blank"
+                           style="text-decoration:none;margin:0 auto;line-height:35px;">
+                            <span class="material-icons" style="float:left;font-size:2.5em;">analytics</span>
+                           <span style="float:left;">Rating insights (Limited access)</span>&nbsp;&nbsp;<span class="material-icons" style="line-height:37px;font-size:.95em;">open_in_new</span>
+                        </a>
+                    </div>
+                </th>
+            </tr>
+            <tr>
+                <td style="height:15px;"></td>
+            </tr>
+        </thead>
+        <tbody>
+            {% for dict_item in supervisee_data %}
+                <tr>
+                    <td>
+                        {% if dict_item["remark"] == "PG" %}
+                            <span class="material-symbols-outlined" style="color:#198753;">radio_button_unchecked</span>
+                        {% elif dict_item["remark"] == "RG" %}
+                            <span class="material-icons" style="color:#198753;">remove_circle_outline</span>
+                        {% elif dict_item["remark"] == "RE" %}
+                            {% if dict_item["rating"] == "None" %}
+                                <span class="material-icons" style="color:#198753;">pending</span>
+                            {% elif dict_item["rating"] == "12" %}
+                                <span class="material-icons" style="color:#198753;">stars</span>
+                            {% elif dict_item["rating"] == "13" %}
+                                <span class="material-icons" style="color:#198753;">check_circle</span>
+                            {% elif dict_item["rating"] == "03" %}
+                                <span class="material-icons" style="color:#198753;">contrast</span>
+                            {% elif dict_item["rating"] == "14" %}
+                                <span class="material-icons" style="color:#198753;">cancel</span>
+                            {% else %}
+
+                            {% endif %}
+                        {% else %}
+
+                        {% endif %}
+                    </td>
+                    <td style="font-size:1em;color:#555555;word-wrap:break-word;border:0px solid #ff0000;">
+                        <span class="staff_name">{{ dict_item["name"] }}</span>
+                        <br>
+                        <span style="font-size:.75em;">
+                            <span class="staff_resno">{{ dict_item["resource_id"] }}</span>
+                            <a href="{{dict_item['mypadlink']}}" target="_blank">myPAD</a>
+                            {% if dict_item["reviewdate"][:10] == "1900-01-01" %}
+                                <span style="word-break:break-word;">Rating date:&nbsp;-</span>
+                            {% else %}
+                                <span style="word-break:break-word;">Rating date:&nbsp;{{ dict_item["reviewdate"][:10] }}</span>
+                            {% endif %}
+                        </span>
+                    </td>
+                    <td style="border:0px solid #ff0000;text-align:center;">
+                        {% if dict_item["remark"] == "PG" %}
+    <!--                        <button type="button" class="btn btn-secondary" disabled>Rate</button><br>-->
+                            <button type="button" class="btn btn-secondary" disabled>Rate</button><br>
+                        {% elif dict_item["remark"] == "RG" %}
+                            <button type="button" class="btn btn-secondary" disabled>Rate</button><br>
+                        {% else %}
+                            <a href="{{ url_for('rate_staff', staff_resno=dict_item['resource_id'], staff_name=dict_item['name'], staff_rating=dict_item['rating'] ) }}" type="button" class="btn btn-primary">Rate</a><br>
+                        {% endif %}
+                    </td>
+                </tr>
+                <tr>
+                    <td style="height:20px;" colspan="3"></td>
+                </tr>
+                <tr>
+                    <td style="height:1px;border-top:1px dashed #cccccc;" colspan="3"></td>
+                </tr>
+                <tr>
+                    <td style="height:10px;" colspan="3"></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <!-- empty div below adds padding to compensate for bottom info fixed div -->
+    <div style="height:100px;width:100%;"></div>
+</div>
+<!--    <div>-->
+<!--        <div>-->
+<!--            <div style="border:2px solid #dcdcdc;border-radius:500px;width:100px;height:100px;float: left;margin-right: 20px;">-->
+<!--                <img src={{picture}} style="border-radius:500px;">-->
+<!--            </div>-->
+<!--            <div style="float:left">-->
+<!--                <h5>-->
+<!--                    <div class="badge rounded-pill bg-success"> {{ name }} </div>-->
+<!--                </h5>-->
+<!--                <h5>-->
+<!--                    <div class="badge rounded-pill bg-success"> {{ email }} </div>-->
+<!--                </h5>-->
+<!--                <h5>-->
+<!--                    <div class="badge rounded-pill bg-success"> {{ resno }} </div>-->
+<!--                </h5>-->
+<!--            </div>-->
+<!--            <div style="border-bottom: 1px solid #cccccc;height:1px;clear: left; padding-top:40px;"></div>-->
+<!--        </div>-->
+<!--        <div class="user_image_div float_l"><img class="profile_image" src={{picture}}></div>-->
+<!--        <div class="user_info_div float_l">-->
+<!--            <div class="rounded-pill bg-success my_pill"> {{ name }} </div>-->
+<!--            <div class="rounded-pill bg-success my_pill"> {{ email }} </div>-->
+<!--            <div class="rounded-pill bg-success my_pill"> {{ resno }} </div>-->
+<!--        </div>-->
+<!--        <div>-->
+<!--            <a style="float:right;text-decoration:none;background-color:#0275d8;color:#ffffff;border-radius:200px;padding:5px 10px;font-size:.8em;"-->
+<!--               href="{{ url_for('help_', mypadyr=session['mypadyr']) }}"-->
+<!--            >Help</a>-->
+<!--        </div>-->
+<!--    </div>-->
+    <!--    <div style="border-bottom: 0px solid #cccccc;height:1px;clear: left; padding-top:40px;"></div>-->
+<!--    <div style="clear:both;">-->
+<!--        <table style="margin:0 auto 0;width:100%;max-width:400px;">-->
+<!--            <thead>-->
+<!--                <tr style="border-bottom:1px solid #dddddd;border-top:0px solid #dddddd;">-->
+<!--                    <th style="min-width:225px;column-width:295px;text-align:left;font-weight:300;font-size:1.2em;padding:40px 0 20px;" colspan="3">Your supervisees</th>-->
+<!--                </tr>-->
+<!--                <tr>-->
+<!--                    <td style="height:15px;"></td>-->
+<!--                </tr>-->
+<!--            </thead>-->
+<!--            <tbody>-->
+<!--                {% for dict_item in supervisee_data %}-->
+<!--                <tr>-->
+<!--                    <td>-->
+<!--                        {% if dict_item["rating"] == "None" %}-->
+<!--                            <span class="material-icons" style="color:#198753;">pending</span>-->
+<!--                        {% elif dict_item["rating"] == "12" %}-->
+<!--                            <span class="material-icons" style="color:#198753;">stars</span>-->
+<!--                        {% elif dict_item["rating"] == "13" %}-->
+<!--                            <span class="material-icons" style="color:#198753;">check_circle</span>-->
+<!--                        {% elif dict_item["rating"] == "03" %}-->
+<!--                            <span class="material-icons" style="color:#198753;">contrast</span>-->
+<!--                        {% elif dict_item["rating"] == "14" %}-->
+<!--                            <span class="material-icons" style="color:#198753;">cancel</span>-->
+<!--                        {% else %}-->
+
+<!--                        {% endif %}-->
+<!--                    </td>-->
+<!--                    <td style="font-size:1em;color:#555555;word-wrap:break-word;border:0px solid #ff0000;">-->
+<!--                        <span class="staff_name">{{ dict_item["name"] }}</span>-->
+<!--                        <br>-->
+<!--                        <span style="font-size:.75em;">-->
+<!--                            <span class="staff_resno">{{ dict_item["resource_id"] }}</span>-->
+<!--                            <a href="{{dict_item['mypadlink']}}" target="_blank">myPAD</a>-->
+<!--                            {% if dict_item["reviewdate"][:10] == "1900-01-01" %}-->
+<!--                                <span style="word-break:break-word;">Review date:&nbsp;-</span>-->
+<!--                            {% else %}-->
+<!--                                <span style="word-break:break-word;">Review date:&nbsp;{{ dict_item["reviewdate"][:10] }}</span>-->
+<!--                            {% endif %}-->
+<!--                        </span>-->
+<!--                    </td>-->
+<!--                    <td style="border:0px solid #ff0000;text-align:center;">-->
+<!--                        {% if dict_item["remark"] == "PG" %}-->
+<!--                            <button type="button" class="btn btn-secondary" disabled>Rate</button><br>-->
+<!--                        {% else %}-->
+<!--                            <a href="{{ url_for('rate_staff', staff_resno=dict_item['resource_id'], staff_name=dict_item['name'], staff_rating=dict_item['rating'] ) }}" type="button" class="btn btn-primary">Rate</a><br>-->
+<!--                        {% endif %}-->
+<!--                    </td>-->
+<!--                </tr>-->
+<!--                <tr>-->
+<!--                    <td style="height:20px;" colspan="3"></td>-->
+<!--                </tr>-->
+<!--                <tr>-->
+<!--                    <td style="height:1px;border-top:1px dashed #cccccc;" colspan="3"></td>-->
+<!--                </tr>-->
+<!--                <tr>-->
+<!--                    <td style="height:10px;" colspan="3"></td>-->
+<!--                </tr>-->
+<!--                {% endfor %}-->
+<!--            </tbody>-->
+<!--        </table>-->
+<!--    </div>-->
+
+    <script>
+        $('.modal_trigger').click(function(){
+            var itemPosition = $(".modal_trigger").index(this);
+            console.log(itemPosition);
+            const staff_name_collection = document.getElementsByClassName("staff_name");
+            const staff_resno_collection = document.getElementsByClassName("staff_resno");
+            const staff_rating_collection = document.getElementsByClassName("staff_rating");
+
+            console.log(staff_name_collection[itemPosition].innerHTML + " " + staff_resno_collection[itemPosition].innerHTML)
+            document.getElementById("staff_name").innerHTML = staff_name_collection[itemPosition].innerHTML
+            document.getElementById("staff_resno").innerHTML = staff_resno_collection[itemPosition].innerHTML
+            document.getElementById("staff_rating").innerHTML = staff_rating_collection[itemPosition].value
+        });
+    </script>
+
+{% endblock %}
