@@ -19,5 +19,6 @@ def getratingdate():
     # print("mnl_date", mnl_date)  # DEBUG INFO
 
     rating_date = mnl_date + 'T00:00:00.000'
+    # rating_date = mnl_date + ' 00:00:00'
 
     return rating_date

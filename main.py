@@ -238,8 +238,9 @@ def landing_page():
 
     # Block to be executed on first run
     if not session["ReloadFlag"]:
-        # session["sup_resno"] = getresno(session["email"], get_resno_url=get_resno_url, get_resno_url_key=get_resno_url_key)
-        session["sup_resno"] = getresno("d.sayo@irri.org", get_resno_url=get_resno_url, get_resno_url_key=get_resno_url_key)
+        session["sup_resno"] = getresno(session["email"], get_resno_url=get_resno_url, get_resno_url_key=get_resno_url_key)
+        # session["sup_resno"] = getresno("d.sayo@irri.org", get_resno_url=get_resno_url, get_resno_url_key=get_resno_url_key)
+        print("MODULE [main] FUNCTION [landing_page] >>>>>>>>>>>> LOGIN EMAIL: ", session["email"])
         # session["sup_resno"] = getresno(session["email"], get_resno_url=wsdl, ocs_client=ocs_client, ocs_user=ocs_user, ocs_pswd=ocs_pswd, var_num_resno=var_num_resno)
         # session["sup_resno"] = getresno("d.sayo@irri.org", get_resno_url=wsdl, ocs_client=ocs_client, ocs_user=ocs_user, ocs_pswd=ocs_pswd, var_num_resno=var_num_resno)
         # session["sup_resno"] = getresno("a.dejesus@irri.org", get_resno_url=wsdl, ocs_client=ocs_client, ocs_user=ocs_user, ocs_pswd=ocs_pswd, var_num_resno=var_num_resno)
