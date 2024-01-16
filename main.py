@@ -239,7 +239,8 @@ def landing_page():
     # Block to be executed on first run
     if not session["ReloadFlag"]:
         session["sup_resno"] = getresno(session["email"], get_resno_url=get_resno_url, get_resno_url_key=get_resno_url_key)
-        # session["sup_resno"] = getresno("d.sayo@irri.org", get_resno_url=get_resno_url, get_resno_url_key=get_resno_url_key)
+        # session["sup_resno"] = getresno("m.connor@irri.org", get_resno_url=get_resno_url, get_resno_url_key=get_resno_url_key)
+        # session["sup_resno"] = getresno("a.junsay@irri.org", get_resno_url=get_resno_url, get_resno_url_key=get_resno_url_key)
         print("MODULE [main] FUNCTION [landing_page] >>>>>>>>>>>> LOGIN EMAIL: ", session["email"])
         print("MODULE [main] FUNCTION [landing_page] >>>>>>>>>>>> RESNO: ", session["sup_resno"])
         # session["sup_resno"] = getresno(session["email"], get_resno_url=wsdl, ocs_client=ocs_client, ocs_user=ocs_user, ocs_pswd=ocs_pswd, var_num_resno=var_num_resno)
@@ -293,6 +294,7 @@ def landing_page():
                 # print("length 1:", len(supervisees_parsed['Agresso']['AgressoQE']))  # DEBUG INFO
                 # print("length 2:", len(supervisees_parsed['Agresso']))  # DEBUG INFO
                 # print("type:", type(supervisees_parsed['Agresso']['AgressoQE']))  # DEBUG INFO
+                print("supervisees_parsed['Agresso']['AgressoQE'] :: ",supervisees_parsed['Agresso']['AgressoQE'])
                 if type(supervisees_parsed['Agresso']['AgressoQE']) is dict:
                     # print("Is DICT")  # DEBUG INFO
                     # print("Value:", supervisees_parsed['Agresso']['AgressoQE']['resource_id'])  # DEBUG INFO
